@@ -179,3 +179,18 @@ body {
   display: flex;
   gap: 10px;
 }
+
+.flag-icon {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flag-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}

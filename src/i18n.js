@@ -37,12 +37,15 @@ const resources = {
       NeedsAttention: "Needs Attention",
       Premium: "Premium",
       Save: "Save",
+      Delete: "Delete",
       Cancel: "Cancel",
       Back: "Back",
 
       /* ===== SERVICES ===== */
       servicesTitle: "Services",
       addService: "Add Service",
+      addService: " + Add Service",
+      saveService: "Save Service",
       serviceName: "Service Name",
       servicePrice: "Price",
       serviceDate: "Date",
@@ -69,6 +72,7 @@ const resources = {
       addMaterial: "Add Material",
       materialName: "Material Name",
       materialQuantity: "Quantity",
+      unitCost: "Unit Cost",
       materialMin: "Minimum Stock",
 
       /* ===== REMINDERS ===== */

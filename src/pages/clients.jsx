@@ -5,7 +5,32 @@ import { useNavigate } from "react-router-dom";
 const Clients = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const handleDeleteClient = async () => 
+  {
+    if (!selectedClient) return;
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this client?"
+    );
 
+    if (!confirmDelete) return;
+
+    try {
+    const response = await fetch(
+      `http://localhost:5000/clients/${selectedClient.id}`,
+      {
+        method: "DELETE"
+      }
+    );
+
+    if (response.ok) {
+      alert("Client deleted");
+      setSelectedClient(null);
+      fetchClients();
+    }
+    } catch (error) {
+    console.error(error);
+    }
+  };
   const [clients, setClients] = useState([]);
   const [selectedClient, setSelectedClient] = useState(null);
   const [services, setServices] = useState([]);
@@ -235,10 +260,10 @@ const Clients = () => {
               handleUpdate("status", e.target.value)
             }
           >
-            <option value="pending">Pending</option>
-            <option value="paid">Paid</option>
-            <option value="attention">Needs Attention</option>
-            <option value="premium">Premium</option>
+            <option value="pending">{t("Pending")}</option>
+            <option value="paid">{t("Paid")}</option>
+            <option value="attention">{t("NeedsAttention")}</option>
+            <option value="premium">{t("Premium")}</option>
           </select>
 
           <div className="d-flex gap-2 mb-4">
@@ -250,6 +275,13 @@ const Clients = () => {
             </button>
 
             <button
+              className="btn btn-danger"
+              onClick={handleDeleteClient}
+              >
+              {t("Delete")}
+              </button>
+
+            <button
               className="btn btn-secondary"
               onClick={() => setSelectedClient(null)}
             >
@@ -259,7 +291,7 @@ const Clients = () => {
 
           <hr />
 
-          <h4>Services</h4>
+          <h4>{t("servicesTitle")}</h4>
 
           <ul className="list-group mb-3">
             {services.map((service) => (
@@ -275,7 +307,7 @@ const Clients = () => {
             className="btn btn-primary mb-3"
             onClick={() => setShowAddService(!showAddService)}
           >
-            + Add Service
+            {t("addService")}
           </button>
 
           {showAddService && (
@@ -323,7 +355,7 @@ const Clients = () => {
                 className="btn btn-success"
                 onClick={handleAddService}
               >
-                Save Service
+                {t("saveService")}
               </button>
             </div>
           )}

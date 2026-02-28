@@ -97,6 +97,29 @@ app.put("/clients/:id", (req, res) => {
 });
 
 /* ========================
+    DELETE CLIENT
+======================== */
+
+app.delete("/clients/:id", (req, res) => {
+  const clientId = req.params.id;
+
+  db.run(
+    "DELETE FROM clients WHERE id = ?",
+    [clientId],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+
+      res.json({
+        message: "Client deleted successfully",
+        deletedRows: this.changes
+      });
+    }
+  );
+});
+
+    
+
+/* ========================
    SERVICES ROUTES
 ======================== */
 

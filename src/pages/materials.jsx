@@ -88,7 +88,7 @@ const Materials = () => {
             className="btn btn-success"
             onClick={handleAddMaterial}
           >
-            Save
+            {t("Save")}
           </button>
         </div>
       )}
@@ -96,9 +96,9 @@ const Materials = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Stock</th>
-            <th>Unit Cost</th>
+            <th>{t("materialName")}</th>
+            <th>{t("materialQuantity")}</th>
+            <th>{t("unitCost")}</th>
           </tr>
         </thead>
         <tbody>

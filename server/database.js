@@ -11,6 +11,8 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
+db.run("PRAGMA foreign_keys = ON");
+
 db.serialize(() => {
 
   /* ==========================
@@ -40,7 +42,7 @@ db.serialize(() => {
       startDate TEXT,
       endDate TEXT,
       status TEXT DEFAULT 'in_progress',
-      FOREIGN KEY (clientId) REFERENCES clients(id)
+      FOREIGN KEY (clientId) REFERENCES clients(id) ON DELETE CASCADE
     )
   `);
 
@@ -73,7 +75,7 @@ db.serialize(() => {
       serviceId INTEGER,
       materialId INTEGER,
       quantityUsed INTEGER,
-      FOREIGN KEY (serviceId) REFERENCES services(id),
+      FOREIGN KEY (serviceId) REFERENCES services(id) ON DELETE CASCADE,
       FOREIGN KEY (materialId) REFERENCES materials(id)
     )
   `);
